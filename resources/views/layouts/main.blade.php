@@ -10,7 +10,7 @@
 </head>
 <body class="font-sans bg-gray-900 text-white">
     <nav  class="border-b border-gray-800">
-        <div class="container mix-auto flex items-center justify-between px-4 py-6">
+        <div class="container mix-auto px-4 flex items-center justify-between px-4 py-6">
             <ul class="flex items-center">
                 <li>
                     <a href="#">
