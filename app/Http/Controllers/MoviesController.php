@@ -33,7 +33,7 @@ class MoviesController extends Controller
         });
 
 
-        dump($nowPlayingMovies);
+        // dump($nowPlayingMovies);
 
 
 
