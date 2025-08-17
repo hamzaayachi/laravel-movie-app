@@ -4,33 +4,38 @@
 
    <div class="movie-info border-b  border-gray-800">
     <div class="container mx-auto px-4 py-16 flex flex-col md:flex-row" >
-        <img src="/img/parasite.jpg" alt="parasite" class=" w-64 md:w-96" style="width: 24rem" >
+        <img src="{{ 'https://image.tmdb.org/t/p/w500/'.$movie['poster_path'] }}" alt="parasite" class=" w-64 md:w-96" style="width: 24rem" >
         <div class="md:ml-24">
-            <h2 class="text-4xl mt-4 md:mt-0 font-semibold" >parasite (2019)</h2>
+            <h2 class="text-4xl mt-4 md:mt-0 font-semibold" >{{ $movie['title'] }}</h2>
             <div class="flex items-center flex-wrap text-gray-400 text-sm ">
                             <svg class="fill-current text-orange-500 w-4" viewBox="0 0 24 24"><g data-name="Layer 2"><path d="M17.56 21a1 1 0 01-.46-.11L12 18.22l-5.1 2.67a1 1 0 01-1.45-1.06l1-5.63-4.12-4a1 1 0 01-.25-1 1 1 0 01.81-.68l5.7-.83 2.51-5.13a1 1 0 011.8 0l2.54 5.12 5.7.83a1 1 0 01.81.68 1 1 0 01-.25 1l-4.12 4 1 5.63a1 1 0 01-.4 1 1 1 0 01-.62.18z" data-name="star"/></g></svg>
-                            <span class="ml-1" >85%</span>
+                            <span class="ml-1" >{{ $movie['vote_average'] * 10 .'%' }}</span>
                             <span class="mx-2" >|</span>
-                            <span>feb 20, 2020</span>
+                            <span>{{ \Carbon\Carbon::parse($movie['release_date'])->format('M d, Y') }}</span>
                             <span class="mx-2" >|</span>
-                            <span>Action, Thriller, Drama</span>
+                            <span>
+                             @foreach ($movie['genres'] as $genre )
+                            {{ $genre['name'] }} @if (!$loop->last), @endif                                
+                            @endforeach
+
+                            </span>
                         </div>
 
                         <p class="text-gray-300 mt-8">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam velit explicabo perferendis odit vero eligendi sunt dolore placeat delectus nam adipisci, provident dignissimos repellat nisi fuga? Dolores deserunt dolore error corporis reprehenderit voluptatibus iste rerum velit, eveniet eaque dignissimos quos non aut magnam ipsum nulla numquam unde reiciendis officiis provident?
+                            {{ $movie['overview'] }}
                         </p>
 
                         <div class="mt-12">
                             <h4 class="text-white font-semibold">Featured Cast</h4>
                             <div class="flex mt-4">
-                                <div>
-                                    <div>bon jon-hoo</div>
-                                    <div class="text-sm text-gray-400">Screenplay, Director, Story</div>
+                                @foreach ( $movie['credits']['crew'] as $crew )
+                                   @if ($loop->index < 2)
+                                <div class="mr-8">
+                                    <div>{{ $crew['name'] }}</div>
+                                    <div class="text-sm text-gray-400">{{ $crew['job'] }}</div>
                                 </div>
-                                  <div class="ml-8">
-                                    <div>han jin-won</div>
-                                    <div class="text-sm text-gray-400">Screenplay</div>
-                                </div>
+                                @endif
+                                @endforeach
                             </div>
                         </div>
                         <div class="mt-12">
