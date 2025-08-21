@@ -70,7 +70,7 @@ class MoviesController extends Controller
         ->get('https://api.themoviedb.org/3/movie/'.$id.'?append_to_response=credits,videos,images')
         ->json();
 
-        dump($movie);
+        //dump($movie);
 
         return view('show', [
 
