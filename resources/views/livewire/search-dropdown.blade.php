@@ -7,12 +7,15 @@
                 </div>
                 <div class="absolute bg-gray-800 text-sm rounded w-64 mt-4">
                     <ul>
+
+                        @foreach ($searchResults as $result )
+                            
+                        
                         <li class="border-b border-gray-700" >
-                            <a href="#" class="block hover:bg-fray-700 px-3 py-4" >{{ $search }}</a>
+                            <a href="{{ route('movies.show', $result['id']) }}" class="block hover:bg-fray-700 px-3 py-4" >{{ $result['title'] }}</a>
                         </li>
-                        <li class="border-b border-gray-700" >
-                            <a href="#" class="block hover:bg-fray-700 px-3 py-4" >{{ $search }}</a>
-                        </li>
+
+                        @endforeach
                     </ul>
                 </div>
   </div>
